@@ -28,10 +28,13 @@ git fetch origin '+refs/heads/*:refs/heads/*' --update-head-ok
 # Print out all branches
 git --no-pager branch -a -vv
 
-if [ "$(git rev-parse --revs-only "$SOURCE_BRANCH")" = "$(git rev-parse --revs-only "$DESTINATION_BRANCH")" ]; then
-  echo "Source and destination branches are the same."
-  exit 0
-fi
+echo "$(git rev-parse --revs-only "$SOURCE_BRANCH")"
+echo "$(git rev-parse --revs-only "$DESTINATION_BRANCH")"
+
+# if [ "$(git rev-parse --revs-only "$SOURCE_BRANCH")" = "$(git rev-parse --revs-only "$DESTINATION_BRANCH")" ]; then
+#   echo "Source and destination branches are the same."
+#   exit 0
+# fi
 
 # Do not proceed if there are no file differences, this avoids PRs with just a merge commit and no content
 LINES_CHANGED=$(git diff --name-only "$DESTINATION_BRANCH" "$SOURCE_BRANCH" -- | wc -l | awk '{print $1}')
