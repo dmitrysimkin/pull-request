@@ -28,6 +28,9 @@ git fetch origin '+refs/heads/*:refs/heads/*' --update-head-ok
 # Print out all branches
 git --no-pager branch -a -vv
 
+echo "DS:"
+echo "Destination $DESTINATION_BRANCH"
+echo "Source $SOURCE_BRANCH"
 echo "$(git rev-parse --revs-only "$SOURCE_BRANCH")"
 echo "$(git rev-parse --revs-only "$DESTINATION_BRANCH")"
 
